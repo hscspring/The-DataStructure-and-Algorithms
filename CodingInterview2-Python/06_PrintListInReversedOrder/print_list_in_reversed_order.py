@@ -37,7 +37,7 @@ def print_list_reverse_recursive(node, res) -> list:
         print_list_reverse_recursive(node.next, res)
 
 
-def lst2node(lst):
+def lst2link(lst):
     root = Node(None)
     ptr = root
     for i in lst:
@@ -49,7 +49,7 @@ def lst2node(lst):
 if __name__ == '__main__':
     lst = [1, 2, 3, 4, 5]
     # lst = [1]
-    node = lst2node(lst)
+    node = lst2link(lst)
     # while node:
     #     print(node.val)
     #     node = node.next

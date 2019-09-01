@@ -1,5 +1,5 @@
-# TheAlgorithms-Python
-Data Structure and Algorithms Implement by Python
+# The-DataStructure-and-Algorithms
+Data Structure and Algorithms Implement by Python and Rust.
 
 ## CodingEnterview2
 
@@ -10,6 +10,7 @@ Data Structure and Algorithms Implement by Python
 It depends on `pytest`
 
 ```bash
+$ cd CodingEnterview2-Python
 $ pytest
 ```
 
