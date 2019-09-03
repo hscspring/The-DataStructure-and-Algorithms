@@ -77,9 +77,6 @@ def preorder(bt: BinaryTreeNode, res: list) -> list:
         res.append(None)
         return res
     res.append(bt.val)
-    if not bt.left and not bt.right:
-        res.append(None)
-        res.append(None)
     preorder(bt.left, res)
     preorder(bt.right, res)
 
@@ -89,9 +86,6 @@ def symmetrical_preorder(bt: BinaryTreeNode, res: list) -> list:
         res.append(None)
         return res
     res.append(bt.val)
-    if not bt.left and not bt.right:
-        res.append(None)
-        res.append(None)
     symmetrical_preorder(bt.right, res)
     symmetrical_preorder(bt.left, res)
 
