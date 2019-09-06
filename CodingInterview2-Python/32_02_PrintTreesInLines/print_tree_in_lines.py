@@ -38,29 +38,88 @@ def print_binary_tree(tree: BinaryTreeNode) -> list:
     """
     if not tree:
         return []
-    queue = [tree]
+    queue1, queue2 = [tree], []
+    q1res, q2res = [], []
     res = []
-    while len(queue):
-        node = queue.pop(0)
-        res.append(node.val)
-        if node.left:
-            queue.append(node.left)
-        if node.right:
-            queue.append(node.right)
+    while True:
+        while len(queue1):
+            node = queue1.pop(0)
+            q1res.append(node.val)
+            if node.left:
+                queue2.append(node.left)
+            if node.right:
+                queue2.append(node.right)
+        if q2res:
+            res.append(q2res)
+            q2res = []
+        while len(queue2):
+            node = queue2.pop(0)
+            q2res.append(node.val)
+            if node.left:
+                queue1.append(node.left)
+            if node.right:
+                queue1.append(node.right)
+        if q1res:
+            res.append(q1res)
+            q1res = []
+        if not queue1 and not queue2:
+            break
     return res
 
 
+def print_binary_tree2(tree: BinaryTreeNode) -> list:
+    if not tree:
+        return []
+    queue1, queue2 = [tree], []
+    res = []
+    while queue1 or queue2:
+        tmp = []
+        while queue1: # for i in range(len(queue1))
+            node = queue1.pop(0)
+            tmp.append(node.val)
+            if node.left:
+                queue2.append(node.left)
+            if node.right:
+                queue2.append(node.right)
+        if tmp:
+            res.append(tmp)
+            tmp = []
+        while queue2: #for i in range(len(queue2)):
+            node = queue2.pop(0)
+            tmp.append(node.val)
+            if node.left:
+                queue1.append(node.left)
+            if node.right:
+                queue1.append(node.right)
+        if tmp:
+            res.append(tmp)
+    return res
 
 
-
+def print_binary_tree3(tree: BinaryTreeNode) -> list:
+    if not tree:
+        return []
+    queue, res = [tree], []
+    while queue:
+        tmp = []
+        for i in range(len(queue)):
+            node = queue.pop(0)
+            tmp.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        if tmp:
+            res.append(tmp)
+    return res
 
 
 if __name__ == '__main__':
-    tree = BinaryTreeNode(7)
-    connect_binarytree_nodes(tree, BinaryTreeNode(4), BinaryTreeNode(7))
-    connect_binarytree_nodes(tree.left, BinaryTreeNode(7), BinaryTreeNode(7))
-    connect_binarytree_nodes(tree.right, BinaryTreeNode(5), None)
-    res = print_binary_tree(tree)
+    tree = BinaryTreeNode(8)
+    connect_binarytree_nodes(tree, BinaryTreeNode(6), BinaryTreeNode(6))
+    connect_binarytree_nodes(tree.left, BinaryTreeNode(5), BinaryTreeNode(7))
+    connect_binarytree_nodes(tree.right, BinaryTreeNode(7), None)
+    res = print_binary_tree3(tree)
     print(res)
     
 
