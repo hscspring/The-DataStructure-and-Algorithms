@@ -43,7 +43,6 @@ def find_path(bt: BinaryTreeNode, psum: int) -> list:
     if not bt:
         return []
     path, paths = [], []
-    curr_sum = 0
     find_path_core(bt, psum, path, paths, 0)
     return paths
 
