@@ -6,11 +6,28 @@
 
 """
 
+import heapq
+
+def get_heaps(lst: list) -> list:
+    min_heap, max_heap = [], []
+    n, i = 0, 0
+    for v in lst:
+        n += 1
+        if n % 2 == 0:
+            if max_heap and v < -max_heap[0]:
+                v = -heapq.heapreplace(max_heap, -v)
+            heapq.heappush(min_heap, v)
+        else:
+            if min_heap and v > min_heap[0]:
+                v = heapq.heapreplace(min_heap, v)
+            heapq.heappush(max_heap, -v)
+    return min_heap, max_heap
 
 
-def get_median() -> :
+
+def get_median(lst: list) -> int:
     """
-    
+    Get median with the given list.
 
     Parameters
     -----------
@@ -21,10 +38,22 @@ def get_median() -> :
 
     Notes
     ------
-
+    Use an array to store, sort.
     """
 
-    return 
+    if not lst:
+        return None
+
+    # defeat 0
+    lst = [i+1e5 for i in lst]
+    minh, maxh = get_heaps(lst)
+
+    if len(lst) % 2 == 0:
+        median = (minh[0] - maxh[0])/2 - 1e5
+    else:
+        median = -maxh[0] - 1e5
+
+    return median
 
 
 
@@ -33,7 +62,13 @@ def get_median() -> :
 
 
 if __name__ == '__main__':
-    pass
+    # lst = [5, 2, 3, 4, 1, 6, 7, 0]
+    # lst = [6, 3, 4, 5, 2, 7, 8, 1]
+    lst = [6, 3, 4, 5, 2, 7, 8, 1]
+    minh, maxh = get_heaps(lst)
+    print(minh)
+    print(maxh)
+    print(get_median(lst))
 
 
 
