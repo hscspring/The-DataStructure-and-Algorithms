@@ -7,6 +7,7 @@
 "mzi"。请编程实现一个函数用来计算一个数字有多少种不同的翻译方法。
 
 1 2 2 5 8
+
 1 22 5 8
 1 2 25 8
 12 2 5 8
@@ -14,10 +15,9 @@
 """
 
 
-
-def func() -> :
+def get_translation_count(num: int) -> int:
     """
-    
+
 
     Parameters
     -----------
@@ -30,28 +30,24 @@ def func() -> :
     ------
 
     """
-
-    return 
-
-
-
-
-
+    if num < 0:
+        return 0
+    s = str(num)
+    lenth = len(s)
+    counts = [0] * lenth + [1]
+    for i in reversed(range(lenth)):
+        count = counts[i+1]
+        if i < lenth - 1:
+            digit1 = int(s[i])
+            digit2 = int(s[i+1])
+            converted = digit1 * 10 + digit2
+            if 10 <= converted <= 25:
+                count += counts[i+2]
+        counts[i] = count
+    return counts[0]
 
 
 if __name__ == '__main__':
-    pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    num = 426
+    res = get_translation_count(num)
+    print(res)
