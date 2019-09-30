@@ -24,10 +24,7 @@ def count_inverse_pairs(lst: list) -> int:
     """
     if not lst:
         return 0
-
-    copy = lst.copy()
-    count = inverse_core(lst, copy, 0, len(lst)-1)
-    return count
+    return inverse_core2(lst, 0, len(lst)-1)
 
 
 def inverse_core(data: list, copy: list, start: int, end: int) -> int:
@@ -61,27 +58,30 @@ def inverse_core(data: list, copy: list, start: int, end: int) -> int:
         copy[index_copy] = data[j]
         index_copy -= 1
         j -= 1
+    print(copy)
     return left + right + count
 
 
-def merge(left: list, right: list) -> list:
-    res = []
-    while  left and right:
-        if left[0] <= right[0]:
-            item = left.pop(0)
+def inverse_core2(data: list, start: int, end: int) -> int:
+    if start == end:
+        return 0
+    mid = (end - start) // 2
+    left = inverse_core2(data, start, start+mid)
+    right = inverse_core2(data, start+mid+1, end)
+    i,j = start + mid, end
+    tmp = []
+    count = 0
+    while i >= start and j >= start + mid + 1:
+        if data[i] > data[j]:
+            tmp.append(data[i])
+            count += (j - start - mid)
+            i -= 1
         else:
-            item = right.pop(0)
-        res.append(item)
-    return res + left + right
+            tmp.append(data[j])
+            j -= 1
+    data[start: end+1] = data[start+mid+1:j+1] + data[start:i+1] + list(reversed(tmp))
+    return left + right + count
 
-
-def merge_sort(lst: list) -> list:
-    if len(lst) <= 1:
-        return lst
-    mid = len(lst) // 2
-    left = merge_sort(lst[:mid])
-    right = merge_sort(lst[mid:])
-    return merge(right, left)
 
 if __name__ == '__main__':
     # lst = [7,5,6,4]
@@ -95,8 +95,15 @@ if __name__ == '__main__':
     # res = merge(left, right)
     # print(res)
 
-    lst = [1,3,9,8,2,5,7,6,4,0]
-    res = merge_sort(lst)
+    lst = [7,5,6,4]
+    # lst = [1, 2, 3, 4, 7, 6, 5]
+    # lst = [6, 5, 4, 3, 2, 1]
+    # lst = [1, 2, 1, 2, 1]
+    
+    # res = count_inverse_pairs(lst)
+    # print(res)
+
+    res = count_inverse_pairs(lst)
     print(res)
 
 
