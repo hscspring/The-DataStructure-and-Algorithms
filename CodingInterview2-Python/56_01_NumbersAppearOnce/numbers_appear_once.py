@@ -32,8 +32,8 @@ def find_num_appear_once(lst: list) -> list:
     for v in lst:
         xor = xor ^ v
 
-    firt_one_index = first_bit_one_index(xor)
-
+    firt_one_index = last_bit_one_index(xor)
+    
     if not firt_one_index:
         return []
 
@@ -47,15 +47,27 @@ def find_num_appear_once(lst: list) -> list:
     return [xor2, xor1]
 
 
+def last_bit_one_index(num: int) -> int:
+    res = 0
+    while num & 1 == 0 and res < 32:
+        num = num >> 1
+        res += 1
+    if res == 0 or res >= 32:
+        return None
+    return res
 
-def first_bit_one_index(num: int) -> int:
+def is_bit_one(num: int, index: int) -> bool:
+    num = num >> index
+    return num & 0x01
+
+def last_bit_one_index2(num: int) -> int:
     binary = bin(num)
     for i in range(1, len(binary)+1):
         if binary[-i] == '1':
             return -i
     return None
 
-def is_bit_one(num: int, index: int) -> bool:
+def is_bit_one2(num: int, index: int) -> bool:
     binary = bin(num)
     if index >= len(binary):
         return False
@@ -64,7 +76,7 @@ def is_bit_one(num: int, index: int) -> bool:
 
 
 if __name__ == '__main__':
-    data = [ 2, 4, 3, 6, 3, 2, 5, 5 ]
+    data = [ 1,1,2,2 ]
     res = find_num_appear_once(data)
     print(res)
 
