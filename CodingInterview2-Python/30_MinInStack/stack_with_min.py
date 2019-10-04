@@ -62,6 +62,14 @@ if __name__ == '__main__':
     print(st.min_stack)
     print(st.min)
 
+    for i in range(6):
+        print(st.pop())
+        print(st.data_stack)
+        print(st.min_stack)
+        print(st.min)
+        print("="*10)
+
+    
 
 
 
