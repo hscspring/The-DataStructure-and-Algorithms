@@ -7,10 +7,11 @@ Data Structure and Algorithms Implement by Python and Rust.
 
 ## Test
 
-It depends on `pytest`
+It depends on `pytest` and `pytest-benchmark`
 
 ```bash
-$ cd CodingEnterview2-Python
-$ pytest
+$ pipenv install
+$ cd CodingEnterview2-Python # total 713 tests
+$ pipenv run pytest
 ```
 
