@@ -7,7 +7,7 @@
 
 
 
-def find_num_appear_once(lst: list) -> list:
+def find_two_nums_appear_once(lst: list) -> list:
     """
     
     
