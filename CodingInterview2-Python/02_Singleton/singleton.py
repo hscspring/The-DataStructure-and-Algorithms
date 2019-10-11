@@ -50,6 +50,25 @@ class Singleton3(Borg):
         return self.state
 
 
+class Singleton4:
+
+    __instance = None
+    def __init__(self):
+        if not Singleton4.__instance:
+            print("__init__ called")
+            
+        else:
+            print("instance already created: ", self.get_instance())
+            # self.get_instance()
+
+    @classmethod
+    def get_instance(cls):
+        if not cls.__instance:
+            cls.__instance = Singleton4()
+        return cls.__instance
+
+
+
 if __name__ == '__main__':
     # s1 = Singleton3()
     # s2 = Singleton3()
@@ -57,18 +76,28 @@ if __name__ == '__main__':
     # print(s1)
     # print(s2)
 
-    class SingletonA(Singleton1):
-        pass
+    # class SingletonA(Singleton1):
+    #     pass
 
-    class SingletonB(Singleton1):
-        pass
+    # class SingletonB(Singleton1):
+    #     pass
 
-    class SingletonA1(SingletonA):
-        pass
-    a = SingletonA()
-    a1 = SingletonA1()
-    b = SingletonB()
-    a.x = 100
-    print(a.x)
-    print(a1.x)
-    print(b.x)
+    # class SingletonA1(SingletonA):
+    #     pass
+    # a = SingletonA()
+    # a1 = SingletonA1()
+    # b = SingletonB()
+    # a.x = 100
+    # print(a.x)
+    # print(a1.x)
+    # print(b.x)
+
+    # s = Singleton4()
+    # Singleton4.get_instance()
+    s1 = Singleton4()
+    s2 = Singleton4()
+    assert s1.get_instance() == s2.get_instance()
+
+
+
+

@@ -1,4 +1,4 @@
-from singleton import Singleton1, Singleton2, Singleton3, Borg
+from singleton import Singleton1, Singleton2, Singleton3, Singleton4, Borg
 
 
 def test1():
@@ -89,3 +89,11 @@ e.x = 100
 def test6():
     assert e.x == e1.x == 100
     assert e.x == f.x == 100
+
+
+def test7():
+    s = Singleton4()
+    Singleton4.get_instance()
+    s1 = Singleton4()
+    s2 = Singleton4()
+    assert s1.get_instance() == s2.get_instance()
