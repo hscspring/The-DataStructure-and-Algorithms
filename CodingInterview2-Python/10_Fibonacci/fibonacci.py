@@ -39,7 +39,7 @@ def fib_matrix(n: int) -> int:
     """
     [[f(n), f(n-1)], [f(n-1), f(n-2)]] = [[1, 1], [1, 0]] ^(n-1)
     a^n = a^{n/2} a^{n/2} when n is even
-    a^n = a^{(n-1)/2} a^{(n-1)/2} when n is odd
+    a^n = a^{(n-1)/2} a^{(n-1)/2} a when n is odd
     """
     if n < 2: return [0, 1][n]
     return matrix_power([[1, 1], [1, 0]], n-1)[0][0]
@@ -65,11 +65,44 @@ def matrix_power(base: [list], exp: int):
         print("exp invalid")
     return matrix
 
+
+import numpy as np
+def fib2(n):
+    if n < 2:
+        return [0, 1][n]
+    base = np.array([[1, 1], [1, 0]])
+    res = base
+    for i in range(2, n):
+        res = np.dot(base, res)
+    return res[0][0]
+
+import numpy as np
+def fib3(n):
+    if n < 2:
+        return [0, 1][n]
+    base = np.array([[1, 1], [1, 0]])
+    return matrix_multiply(base, n-1)[0][0]
+
+def matrix_multiply(base, exp):
+    if exp == 1:
+        res = base
+    elif exp > 1 and exp % 2 == 0:
+        res = matrix_multiply(base, exp/2)
+        res = np.dot(res, res)
+    elif exp > 1 and exp % 2 == 1:
+        res = matrix_multiply(base, (exp-1)/2)
+        res = np.dot(res, res).dot(base)
+    else:
+        res = base
+    return res
+
 if __name__ == '__main__':
     print(fib_loop(40))
-    print(fib(40))
-    print(fib_matrix(40))
-    print(fib_matrix(-2))
+    # print(fib(40))
+    # print(fib_matrix(40))
+    # print(fib_matrix(-2))
+    print(fib2(40))
+    print(fib3(40))
 
 
 

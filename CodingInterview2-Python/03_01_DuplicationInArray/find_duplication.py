@@ -71,6 +71,7 @@ def get_duplicate3(numbers: list) -> int:
     for k in range(n):
         while numbers[k] != k:
             if numbers[k] == numbers[numbers[k]]:
+                print(numbers)
                 return numbers[k]
             tmp = numbers[k]
             numbers[k] = numbers[tmp]
@@ -78,6 +79,6 @@ def get_duplicate3(numbers: list) -> int:
 
 
 if __name__ == '__main__':
-    res = get_duplicate2([-1, -1])
+    res = get_duplicate3([2,3,1,0,2,5,3])
     print(res)
 

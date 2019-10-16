@@ -26,6 +26,7 @@ def get_next_in_inorder(pnode: TreeNode) -> TreeNode:
     # DO NOT have a right tree
     # 没有右子树时
     elif pnode.parent:
+    # else:
         curr = pnode
         parent = pnode.parent
         # is his parent's right tree

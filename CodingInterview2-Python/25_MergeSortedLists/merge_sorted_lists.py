@@ -76,10 +76,10 @@ def merge_recurision(link1: Node, link2: Node) -> Node:
         return link1
     if link1.val < link2.val:
         link = link1
-        link.next = merge(link1.next, link2)
+        link.next = merge_recurision(link1.next, link2)
     else:
         link = link2
-        link.next = merge(link1, link2.next)
+        link.next = merge_recurision(link1, link2.next)
     return link
 
 

@@ -91,6 +91,7 @@ if __name__ == '__main__':
     # nums = [0] * 3
     # increase_recursion(nums, 0)
     print_maxn_digit_recursion(2)
+    print_maxn_digit(2)
 
 
 

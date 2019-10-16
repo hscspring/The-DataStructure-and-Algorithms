@@ -37,6 +37,8 @@ def get_duplicate(numbers: list) -> int:
     while end >= start:
         middle = ((end - start) >> 1) + start
         count = count_range(numbers, start, middle)
+        # if end == start and count > 1:
+        #     return start
         if end == start:
             if count > 1:
                 res = start
@@ -56,3 +58,11 @@ def count_range(numbers, start, end):
         if i >= start and i <= end:
             count += 1
     return count
+
+if __name__ == '__main__':
+    lst = [2,3,5,4,3,2,6,7]
+    res = get_duplicate(lst)
+    print(res)
+
+
+

@@ -30,10 +30,39 @@ class Queue:
         return head
 
 
+class Stack:
+    def __init__(self):
+        self.queue1 = []
+        self.queue2 = []
+    
+    def append(self, x):
+        self.queue1.append(x)
+    
+    def delete(self):
+        if not self.queue2:
+            while self.queue1:
+                # 先进先出
+                item = self.queue1.pop(0)
+                self.queue2.append(item)
+        if not self.queue2:
+            return
+        return self.queue2.pop()
+
+
 if __name__ == '__main__':
-    que = Queue()
-    # lst = [1, 2, 3, 4, 5]
-    # for i in lst:
-    #     que.append(i)
-    x = que.delete()
+    # que = Queue()
+    stk = Stack()
+    lst = [1, 2, 3, 4, 5]
+    for i in lst:
+        stk.append(i)
+    x = stk.delete()
     print(x)
+
+
+
+
+
+
+
+
+
