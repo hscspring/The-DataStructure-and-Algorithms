@@ -51,7 +51,6 @@ def get_probability_recursion2(n: int) -> int:
         return 0
     total = max_val ** n
     freq = get_freq(n, n, 1, [0] * (max_val * n - n + 1))
-    print(freq)
     return total - sum(freq)
 
 
@@ -81,7 +80,7 @@ def get_probability(n: int) -> int:
                 freq2[i] = 0
             for i in range(k, max_val*k+1):
                 freq2[i] = 0
-                for j in range(1, 7):
+                for j in range(1, max_val+1):
                     if j <= i:
                         freq2[i] += freq1[i-j]
             flag = 1
@@ -90,12 +89,11 @@ def get_probability(n: int) -> int:
                 freq1[i] = 0
             for i in range(k, max_val*k+1):
                 freq1[i] = 0
-                for j in range(1, 7):
+                for j in range(1, max_val+1):
                     if j <= i:
                         freq1[i] += freq2[i-j]
             flag = 0
     freq = freq2[n:] if flag else freq1[n:]
-    print(freq)
     return sum(freq) - total
 
 

@@ -43,7 +43,7 @@ def print_matrix_clockwisely(matrix: list) -> list:
     start = 0
     rows, cols = len(matrix), len(matrix[0])
     while rows > 2 * start and cols > 2 * start:
-        print_circle(matrix, rows, cols, start, res)
+        print_circle2(matrix, rows, cols, start, res)
         start += 1
     return res
 
@@ -66,6 +66,26 @@ def print_circle(matrix: list, rows: int, cols: int, start: int, res: list):
     if start < endx and start < endy - 1:
         for i in reversed(range(start+1, endy)):
             res.append(matrix[i][start])
+
+
+def print_circle2(matrix: list, rows: int, cols: int, start: int, res: list):
+    endx = cols - 1 - start
+    endy = rows - 1 - start
+    # left -> right
+    for i in range(start, endx+1):
+        res.append(matrix[start][i])
+    # up -> below
+    for i in range(start+1, endy+1):
+        res.append(matrix[i][endx])
+    # right -> left
+    if start < endy:
+        for i in reversed(range(start, endx)):
+            res.append(matrix[endy][i])
+    # below -> up
+    if start < endx:
+        for i in reversed(range(start+1, endy)):
+            res.append(matrix[i][start])
+
 
 
 if __name__ == '__main__':

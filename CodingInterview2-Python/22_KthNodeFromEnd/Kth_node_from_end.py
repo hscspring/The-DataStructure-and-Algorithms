@@ -66,7 +66,7 @@ if __name__ == '__main__':
     link = list2link([1,2,3,4,5])
     lst = link2list(link)
     print(lst)
-    res = find_kth_from_tail(link, 6)
+    res = find_kth_from_tail(link, 5)
     print(res.val)
 
 

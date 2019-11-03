@@ -66,12 +66,18 @@ def reverse2(link: Node) -> Node:
     return pre
 
 
-
+def reverse3(head: Node) -> Node:
+    if not head or not head.next:
+        return head
+    p = reverse3(head.next)
+    head.next.next = head
+    head.next = None
+    return p
 
 
 if __name__ == '__main__':
-    link = list2link([1])
-    rlink = reverse(link)
+    link = list2link([1, 2])
+    rlink = reverse3(link)
     print(rlink.val)
     print(rlink.next)
     # res = link2list(rlink)

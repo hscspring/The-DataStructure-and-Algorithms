@@ -16,7 +16,7 @@ def connect(parent: Node, children: list) -> Node:
     return parent
 
 
-def get_node_path(tree: Node, node: Node, res: list) -> list:
+def get_node_path(tree: Node, node: Node, res: list) -> bool:
     res.append(tree.val)
     found = False
     if tree.val == node.val:

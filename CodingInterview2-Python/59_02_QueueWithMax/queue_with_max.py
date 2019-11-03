@@ -15,8 +15,7 @@ class QueueMax:
         self.maxes = []
 
     def push_back(self, x):
-        # like slide with width = 1, so do not need while
-        if self.maxes and x >= self.maxes[-1]:
+        while self.maxes and x >= self.maxes[-1]:
             self.maxes.pop()
         self.data.append(x)
         self.maxes.append(x)
@@ -63,10 +62,10 @@ if __name__ == '__main__':
 
     qm = QueueMax()
 
-    qm.push_back(2)
-    qm.push_back(3)
     qm.push_back(4)
+    qm.push_back(3)
     qm.push_back(2)
+    qm.push_back(8)
     print(qm.data)
     print(qm.maxes)
     print(qm.max)

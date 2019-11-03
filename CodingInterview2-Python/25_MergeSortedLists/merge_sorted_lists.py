@@ -51,11 +51,11 @@ def merge(link1: Node, link2: Node) -> Node:
     ptr = link
     while link1 and link2:
         if link1.val <= link2.val:
-            ptr.next = Node(link1.val)
+            ptr.next = link1 #Node(link1.val)
             ptr = ptr.next
             link1 = link1.next
         else:
-            ptr.next = Node(link2.val)
+            ptr.next = link2 #Node(link2.val)
             ptr = ptr.next
             link2 = link2.next
     while link1:
@@ -68,6 +68,24 @@ def merge(link1: Node, link2: Node) -> Node:
         link2 = link2.next
     return link.next
 
+
+def merge2(head1, head2):
+    link = Node(None)
+    ptr = link
+    while head1 and head2:
+        if head1.val <= head2.val:
+            ptr.next = head1
+            ptr = ptr.next
+            head1 = head1.next
+        else:
+            ptr.next = head2
+            ptr = ptr.next
+            head2 = head2.next
+    if head1:
+        ptr.next = head1
+    if head2:
+        ptr.next = head2
+    return link.next
 
 def merge_recurision(link1: Node, link2: Node) -> Node:
     if not link1:

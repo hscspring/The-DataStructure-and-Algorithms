@@ -43,7 +43,6 @@ def verify_seq_bst(seq: list) -> bool:
         right = verify_seq_bst(seq[j:-1])
     return left and right
 
-
 def verify_seq_bst2(seq: list) -> bool:
     if not seq:
         return False

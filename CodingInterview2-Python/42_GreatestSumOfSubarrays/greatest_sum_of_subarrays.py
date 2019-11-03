@@ -40,7 +40,7 @@ def find_greatest_sum_of_sub_array_dp(lst: list) -> int:
     if not lst:
         return 0
     dp = [lst[0]] + [0] * (len(lst)-1)
-    res = dp[0]
+    # res = dp[0]
     for i in range(1, len(lst)):
         if dp[i-1] <= 0:
             dp[i] = lst[i]
@@ -55,7 +55,7 @@ def find_greatest_sum_of_sub_array_dp(lst: list) -> int:
 
 if __name__ == '__main__':
     lst = [-2, -8, -1, -5, -9]
-    # lst = [1, -2, 3, 10, -4, 7, 2, -5]
+    lst = [1, -2, 3, 10, -4, 7, 2, -5]
     res = find_greatest_sum_of_sub_array_dp(lst)
     print(res)
 

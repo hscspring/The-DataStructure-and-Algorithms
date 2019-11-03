@@ -72,9 +72,12 @@ def delete_duplicated_node(root: Node) -> Node:
 
 
 if __name__ == '__main__':
-    lst = [1, 2, 3, 4, 5]
+    lst = [1, 2, 2, 3, 3, 3]
     root = list2link(lst)
     print(link2list(root))
+    new = delete_duplicated_node(root)
+    newlst = link2list(new)
+    print(newlst)
 
 
 

@@ -46,6 +46,23 @@ def is_pop_order(push_order: list, pop_order: list) -> bool:
     return True
 
 
+def is_pop_order2(push_order, pop_order):
+    if not push_order or not pop_order:
+        return False
+    stack = []
+    for i in pop_order:
+        if stack and stack[-1] == i:
+            stack.pop()
+        else:
+            while push_order and push_order[0] != i:
+                x = push_order.pop(0)
+                stack.append(x)
+            if push_order:
+                push_order.pop(0)
+            else:
+                return False
+    return True
+
 
 if __name__ == '__main__':
     pass
