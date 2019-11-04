@@ -85,9 +85,9 @@ items = [
   %{ "location" => "/folder1", "create_time" => "2019-03-01" },
   %{ "location" => "/folder1/folder1-folder1", "create_time" => "2019-03-02" },
   %{ "location" => "/folder1/folder1-folder1/file1", "create_time" => "2019-03-10" },
-  %{ "location" => "/folder1/folder1-folder1/file2", "create_time" => "2019-03-01" },
-  %{ "location" => "/folder1/folder1-folder1/file3", "create_time" => "2019-03-03" },
-  %{ "location" => "/folder1/folder1-folder1/file4", "create_time" => "2019-03-02" },
+  %{ "location" => "/folder1/folder1-folder1/file2", "create_time" => "2019-03-02" },
+  %{ "location" => "/folder1/folder1-folder1/file3", "create_time" => "2019-03-04" },
+  %{ "location" => "/folder1/folder1-folder1/file4", "create_time" => "2019-03-03" },
 
   %{ "location" => "/folder2", "create_time" => "2019-01-01" },
   %{ "location" => "/folder2/folder2-folder1", "create_time" => "2019-01-20" },
@@ -100,8 +100,8 @@ items = [
 
   %{ "location" => "/folder3", "create_time" => "2019-02-01" },
   %{ "location" => "/folder3/folder3-folder1", "create_time" => "2019-02-10" },
-  %{ "location" => "/folder3/folder3-folder1/file1", "create_time" => "2019-02-02" },
-  %{ "location" => "/folder3/folder3-folder1/file2", "create_time" => "2019-02-01" },
+  %{ "location" => "/folder3/folder3-folder1/file1", "create_time" => "2019-02-12" },
+  %{ "location" => "/folder3/folder3-folder1/file2", "create_time" => "2019-02-11" },
 
   %{ "location" => "/folder3/folder3-folder2", "create_time" => "2019-02-01" },
   %{ "location" => "/folder3/folder3-folder2/file1", "create_time" => "2019-02-03" },
@@ -170,7 +170,6 @@ sorted_locs = items
 
 tree = sorted_locs
 |> Sorter.build_tree()
-|> IO.inspect()
 
 Sorter.dft_with_sort([tree], [], sorted_locs, indexes) 
 |> Enum.reverse()
@@ -178,6 +177,16 @@ Sorter.dft_with_sort([tree], [], sorted_locs, indexes)
 
 IO.inspect Sorter.sort(items, indexes) == expected
 
+
+
+start = Time.utc_now()
+
+range = 1..10000
+Enum.map(range, fn _x -> 
+  Sorter.sort(items, indexes)
+end)
+
+IO.inspect Time.diff(Time.utc_now(), start)
 
 list = ["/2/3/8", "/2/3", "/2/4", "/2/4/6", "/2/3/7", "/2/3/5/6/7/8"]
 
