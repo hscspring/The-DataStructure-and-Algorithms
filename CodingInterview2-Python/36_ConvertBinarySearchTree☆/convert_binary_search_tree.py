@@ -119,18 +119,20 @@ if __name__ == '__main__':
     # res = travel_inorder(tree)
     # print(res)
 
-    # tree = BSTNode(10)
-    # connect_bst_nodes(tree, BSTNode(6), BSTNode(14))
-    # connect_bst_nodes(tree.left, BSTNode(4), BSTNode(8))
-    # connect_bst_nodes(tree.right, BSTNode(12), BSTNode(16))
+    tree = BSTNode(10)
+    connect_bst_nodes(tree, BSTNode(6), BSTNode(14))
+    connect_bst_nodes(tree.left, BSTNode(4), BSTNode(8))
+    connect_bst_nodes(tree.right, BSTNode(12), BSTNode(16))
     # head = convert_bst_to_sorted_doubly_linked_list(tree)
     # res = travel_linked_list(head)
     # print(res)
 
 
-    tree = BSTNode(5)
+    # tree = BSTNode(5)
     head = convert_bst_to_sorted_doubly_linked_list(tree)
     # head = convert_bst_to_sorted_doubly_linked_list_with_inorder(tree)
+    print(head.right.val)
+    print(head.right.right.val)
     res = travel_linked_list(head)
     print(res)
     # assert travel_linked_list(head) == [None, 4, 6, 4, 6, 8, 6, 8, 10, 8, 10, 12, 10, 12, 14, 12, 14, 16, 14, 16, None]

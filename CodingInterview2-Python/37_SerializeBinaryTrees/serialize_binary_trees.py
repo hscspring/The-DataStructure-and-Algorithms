@@ -62,9 +62,8 @@ def serialize1(bt: BinaryTreeNode, serial: list) -> list:
     return serial
 
 def deserialize(serial: list) -> BinaryTreeNode:
-    if not serial:
-        return None
-
+    # if not serial:
+    #     return None
     head = None
     value = serial.pop(0)
     if value != "$":
@@ -72,6 +71,10 @@ def deserialize(serial: list) -> BinaryTreeNode:
         head.left = deserialize(serial)
         head.right = deserialize(serial)
     return head
+
+
+# def deserialize(serial: list) -> BinaryTreeNode:
+#     pass
 
 
 if __name__ == '__main__':
@@ -90,6 +93,10 @@ if __name__ == '__main__':
     head = deserialize(serial)
     res = travel_preorder(head, [])
     print(res)
+
+    print(head.val)
+    print(head.left.val, head.right.val)
+    print(head.left.left.val, head.left.right)
 
 
 
