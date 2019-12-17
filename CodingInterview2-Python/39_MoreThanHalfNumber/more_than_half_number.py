@@ -63,7 +63,7 @@ def check(lst: list, pre: int) -> bool:
     return 2*k > len(lst)
 
 
-def more_than_half_num_recurision(lst: list) -> int:
+def more_than_half_num_partition(lst: list) -> int:
     if not lst:
         return None
     mid, loc = len(lst)//2, 0
@@ -86,10 +86,14 @@ def partition(lst, loc):
     return lo + hi
 
 
+
+
 if __name__ == '__main__':
     lst = [1, 1, 1, 1, 2, 2, 2, 2, 2]
-    lst = [1, 2, 3, 2, 4, 2, 5, 2, 3]
-    res = more_than_half_num_recurision(lst)
+    lst = [1, 2, 3, 2, 4, 2, 5, 2]
+    lst = [1,2,2,2,2,3,4,5]
+    
+    res = more_than_half_num(lst)
     print(res)
 
 

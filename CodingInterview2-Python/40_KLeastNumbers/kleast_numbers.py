@@ -6,7 +6,6 @@
 """
 
 
-
 def get_kleast(lst: list, k: int) -> list:
     """
     get k least numbers from the given list.
@@ -38,6 +37,7 @@ def get_kleast(lst: list, k: int) -> list:
             index = container.index(maxc)
     return container
 
+
 def get_kleast_heap(lst: list, k: int) -> list:
     # also can construct all the data to a min heap.
     if not lst or k > len(lst) or k < 1:
@@ -53,9 +53,18 @@ def get_kleast_heap(lst: list, k: int) -> list:
     return [heapq._heappop_max(container) for i in range(k)]
 
 
-
 def get_kleast1(lst, k):
     return sorted(lst)[:k]
+
+
+def kmins(lst, k):
+    result = []
+    while lst and len(result) < k:
+        minn = min(lst)
+        result.append(minn)
+        lst.remove(minn)
+    return result
+
 
 def get_kleast2(lst: list, k: int) -> list:
     if not lst or k > len(lst) or k < 1:
@@ -67,7 +76,8 @@ def get_kleast2(lst: list, k: int) -> list:
         lst.remove(x)
     return res
 
-def get_kleast_recursion(lst: list, k: int) -> list:
+
+def get_kleast_partition(lst: list, k: int) -> list:
     if not lst or k > len(lst) or k < 1:
         return []
     loc = 0
@@ -77,6 +87,7 @@ def get_kleast_recursion(lst: list, k: int) -> list:
         loc += 1
         lo, eq = partition(lst, loc)
     return (lo+eq)[:k]
+
 
 def partition(lst: list, loc: int) -> list:
     pi = lst[loc]
@@ -90,23 +101,11 @@ def partition(lst: list, loc: int) -> list:
             continue
     return lo, eq
 
+
 if __name__ == '__main__':
     lst = [4, 5, 1, 3, 2]
     lst = [4, 5, 1, 6, 2, 7, 2, 8]
-    lst = [2,2,2,2,2,2]
-    lst = [2,2,1,1,3,3]
-    res = get_kleast_heap(lst, 5)
+    lst = [2, 2, 2, 2, 2, 2]
+    lst = [2, 2, 1, 1, 3, 3]
+    res = kmins(lst, 5)
     print(res)
-
-
-
-
-
-
-
-
-
-
-
-
-    

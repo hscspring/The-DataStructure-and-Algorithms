@@ -31,7 +31,7 @@ def find_greatest_sum_of_sub_array(lst: list) -> int:
             curr = i
         else:
             curr += i
-        if curr >= res:
+        if curr > res:
             res = curr
     return res
 

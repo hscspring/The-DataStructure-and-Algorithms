@@ -17,7 +17,7 @@ def test_none():
     lst = []
     assert get_median(lst) == None
 
-def test_loop():
+def test_loop1():
     medians = []
     lst = [5,2,3,4,1,6,7,0,8]
     for i in range(len(lst)):
@@ -25,3 +25,13 @@ def test_loop():
         medians.append(median)
         lst.pop()
     assert medians == [4,3.5,4,3.5,3,3.5,3,3.5,5]
+
+
+def test_loop2():
+    medians = []
+    lst = [-2, -1, 1, 2, 0]
+    for i in range(len(lst)):
+        median = get_median(lst)
+        medians.append(median)
+        lst.pop()
+    assert medians == [0, 0, -1, -1.5, -2]

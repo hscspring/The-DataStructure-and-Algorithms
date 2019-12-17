@@ -10,10 +10,8 @@ import heapq
 
 def get_heaps(lst: list) -> list:
     min_heap, max_heap = [], []
-    n, i = 0, 0
-    for v in lst:
-        n += 1
-        if n % 2 == 0:
+    for i, v in enumerate(lst):
+        if i % 2 != 0:
             if max_heap and v < -max_heap[0]:
                 v = -heapq.heapreplace(max_heap, -v)
             heapq.heappush(min_heap, v)
@@ -64,18 +62,21 @@ def get_median(lst: list) -> int:
 if __name__ == '__main__':
     # lst = [5, 2, 3, 4, 1, 6, 7, 0]
     # lst = [6, 3, 4, 5, 2, 7, 8, 1]
-    lst = [6, 3, 4, 5, 2, 7, 8, 1]
-    minh, maxh = get_heaps(lst)
-    print(minh)
-    print(maxh)
-    print(get_median(lst))
+    # lst = [6, 3, 4, 5, 2, 7, 8, 1]
+    # minh, maxh = get_heaps(lst)
+    # print(minh)
+    # print(maxh)
+    # print(get_median(lst))
 
-
-
-
-
-
-
+    medians = []
+    lst = [5,2,3,4,1,6,7,0,8]
+    lst = [-1, -2, 1, 2, 0]
+    for i in range(len(lst)):
+        print(lst)
+        median = get_median(lst)
+        print(median)
+        medians.append(median)
+        lst.pop()
 
 
 

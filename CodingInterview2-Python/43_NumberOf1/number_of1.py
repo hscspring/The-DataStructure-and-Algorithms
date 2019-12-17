@@ -80,9 +80,31 @@ def number_of_one_recursion(n: int) -> int:
     return nums_first + nums_other + nums_recur
 
 
+
+def count_one(num):
+    str_lst = map(str, range(1, num+1))
+    return "".join(str_lst).count("1")
+
+
 if __name__ == '__main__':
-    res = number_of_one_recursion(100)
+    num = 100
+    num = 2134522
+
+    import time
+    t0 = time.time()
+    res = number_of_one_recursion(num)
     print(res)
+    print(time.time()-t0)
+
+    t0 = time.time()
+    res = count_one(num)
+    print(res)
+    print(time.time()-t0)
+
+    t0 = time.time()
+    res = number_of_one(num)
+    print(res)
+    print(time.time()-t0)
 
 
 
