@@ -26,6 +26,8 @@ def digit_at_index(index: str) -> str:
     """
     if index < 0:
         return -1
+    if index < 10:
+        return index
 
     digits, num_digits = 1, 10 
     while index >= num_digits: 
@@ -39,18 +41,62 @@ def digit_at_index(index: str) -> str:
 
     for i in range(1, index_from_right):
         num //= 10
-
     return num % 10
 
 
+def digit_at_index2(index):
+    if index < 0:
+        return -1
+    if index < 10:
+        return index
+    
+    num = 10
+    i = 1
+    while num < index:
+        num += 9 * (10**i) * (i+1)
+        i += 1
+    
+    need = num - 9 * (10**(i-1)) * i
+    # num = 10
+    # for j in range(2, i):
+    #     num += 9 * (10**j) * (j+1)
+    
+    num = 10**(i-1) + (index - need) // i
+    
+    index_from_left = index % i
+    
+    return int(str(num)[index_from_left])
+
+
 if __name__ == '__main__':
-    res = digit_at_index(13)
+    res1 = digit_at_index(13)
+    res2 = digit_at_index2(13)
+    print(res1, res2)
+
     res = digit_at_index(19)
     res = digit_at_index(10)
     res = digit_at_index(189)
     res = digit_at_index(190)
     res = digit_at_index(12)
-    print(res)
+    
+    res1 = digit_at_index(98)
+    res2 = digit_at_index2(98)
+    print("98: ", res1, res2)
+    res1 = digit_at_index(99)
+    res2 = digit_at_index2(99)
+    print("99: ", res1, res2)
+    res1 = digit_at_index(100)
+    res2 = digit_at_index2(100)
+    print("100: ", res1, res2)
+    res1 = digit_at_index(101)
+    res2 = digit_at_index2(101)
+    print("101: ", res1, res2)
+    res1 = digit_at_index(102)
+    res2 = digit_at_index2(102)
+    print("102: ", res1, res2)
+    res1 = digit_at_index(103)
+    res2 = digit_at_index2(103)
+    print("103: ", res1, res2)
 
 
 

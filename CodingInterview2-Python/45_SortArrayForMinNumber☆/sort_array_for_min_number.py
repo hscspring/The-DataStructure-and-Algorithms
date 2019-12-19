@@ -9,6 +9,10 @@
 from functools import cmp_to_key
 
 
+def func(lst):
+    return int("".join(sorted(map(str, lst), 
+                              key=cmp_to_key(lambda m, n: int(m+n)-int(n+m)))))
+
 def combine_to_min_num(lst: list) -> str:
     """
 
@@ -39,4 +43,6 @@ if __name__ == '__main__':
     lst = [3, 32, 321]
     # lst = [9, 18, 0, 0]
     res = combine_to_min_num(lst)
+    print(res)
+    res = func(lst)
     print(res)

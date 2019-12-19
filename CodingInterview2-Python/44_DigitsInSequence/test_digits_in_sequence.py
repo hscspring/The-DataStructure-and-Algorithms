@@ -1,58 +1,61 @@
-from digits_in_sequence import digit_at_index
+from digits_in_sequence import digit_at_index, digit_at_index2
 
 
 def test1():
-    res = digit_at_index(5)
-    assert res == 6
+    assert digit_at_index(5) == 5
+    assert digit_at_index2(5) == 5
 
 
 def test2():
-    res = digit_at_index(13)
-    assert res == 1
+    assert digit_at_index(13) == 1
+    assert digit_at_index2(13) == 1
 
 
 def test3():
-    res = digit_at_index(19)
-    assert res == 4
+    assert digit_at_index(19) == 4
+    assert digit_at_index2(19) == 4
 
 
 def test4():
-    res = digit_at_index(10)
-    assert res == 1
+    assert digit_at_index(10) == 1
+    assert digit_at_index(10) == 1
 
 
 def test5():
-    res = digit_at_index(189)
-    assert res == 9
+    assert digit_at_index(189) == 9
+    assert digit_at_index(189) == 9
 
 
 def test6():
-    res = digit_at_index(190)
-    assert res == 1
+    assert digit_at_index(190) == 1
+    assert digit_at_index(190) == 1
 
 
 def test7():
-    res = digit_at_index(1000)
-    assert res == 3
+    assert digit_at_index(1000) == 3
+    assert digit_at_index(1000) == 3
 
 
 def test8():
-    res = digit_at_index(1001)
-    assert res == 7
+    assert digit_at_index(1001) == 7
+    assert digit_at_index(1001) == 7
 
 
 def test9():
-    res = digit_at_index(1002)
-    assert res == 0
+    assert digit_at_index(1002) == 0
+    assert digit_at_index(1002) == 0
 
 
 def test10():
-    assert digit_at_index(0) == 1
+    assert digit_at_index(0) == 0
+    assert digit_at_index2(0) == 0
 
 
 def test11():
     assert digit_at_index(-1) == -1
+    assert digit_at_index2(-1) == -1
 
 
 def test12():
     assert digit_at_index(-10) == -1
+    assert digit_at_index2(-10) == -1
