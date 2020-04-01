@@ -32,7 +32,7 @@ def test7():
     lst = [2,2,3,4,4]
     assert(find(lst)) == 3
 
-def test9():
+def test8():
     lst = [0,0,1,2,2]
     assert(find(lst)) == 1
 
@@ -48,3 +48,12 @@ def test10():
 def test11():
     lst = [2,3]
     assert(find(lst)) == 2
+
+
+def test12():
+    lst = [-1,-1,2,3,3]
+    assert (find(lst)) == 2
+
+def test13():
+    lst = [1,1,2,2,3,3,4,4,5,6,6]
+    assert (find(lst)) == 5

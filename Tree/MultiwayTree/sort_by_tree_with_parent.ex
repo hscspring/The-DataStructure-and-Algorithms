@@ -164,5 +164,9 @@ end)
 IO.inspect Time.diff(Time.utc_now(), start)
 
 
-
-
+items
+|> Enum.sort_by(& &1.create_time)
+|> Sorter.add_parent()
+|> IO.inspect()
+|> Sorter.build_tree(indexes)
+|> IO.inspect()

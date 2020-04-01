@@ -15,7 +15,7 @@
 """
 
 
-def get_translation_count(num: int) -> int:
+def get_translation_count1(num: int) -> int:
     """
 
 
@@ -44,10 +44,28 @@ def get_translation_count(num: int) -> int:
             if 10 <= converted <= 25:
                 count += counts[i+2]
         counts[i] = count
+        print(counts)
     return counts[0]
+
+def get_translation_count2(num: int) -> int:
+    if num < 0:
+        return 0
+    s = str(num)
+    lenth = len(s)
+    counts = [1] + [0] * lenth
+    for i in range(1, lenth+2):
+        count = counts[i-1]
+        if i < lenth + 1:
+            digit1 = int(s[i-2])
+            digit2 = int(s[i-1])
+            converted = digit1 * 10 + digit2
+            if 10 <= converted <= 25:
+                count += counts[i-2]
+            counts[i] = count
+    return counts[-1]
 
 
 if __name__ == '__main__':
-    num = 426
-    res = get_translation_count(num)
+    num = 125
+    res = get_translation_count2(num)
     print(res)

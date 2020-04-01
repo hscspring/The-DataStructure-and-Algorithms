@@ -39,6 +39,7 @@ def combine_to_min_num(lst: list) -> str:
 #     return int(m+n) - int(n+m)
 
 
+
 if __name__ == '__main__':
     lst = [3, 32, 321]
     # lst = [9, 18, 0, 0]

@@ -82,8 +82,8 @@ def find_sub_string_length_dp2(s: str) -> int:
             d = i - preindex
             if d <= dp[i-1]:
                 dp[i] = d
-            else:
-                dp[i] = dp[i-1] + 1
+            # else:
+            #     dp[i] = dp[i-1] + 1
         tmp.append(s[i])
     return max(dp)
 
@@ -98,7 +98,7 @@ def last_index(lst: list, c: str) -> int:
 
 
 if __name__ == '__main__':
-    res = find_sub_string_length_dp2("arabcacfr")
+    res = find_sub_string_length_dp2("aaabbbccc")
     print(res)
 
 

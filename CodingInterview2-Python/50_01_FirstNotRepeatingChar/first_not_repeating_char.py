@@ -41,7 +41,8 @@ def first_not_repeat(s: str) -> str:
 
 
 if __name__ == '__main__':
-    pass
+    res = first_not_repeat("ba")
+    print(res)
 
 
 

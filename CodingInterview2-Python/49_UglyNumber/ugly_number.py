@@ -18,7 +18,7 @@ def get_ugly(n: int) -> int:
 
     Returns
     ---------
-    
+
 
     Notes
     ------
@@ -31,7 +31,7 @@ def get_ugly(n: int) -> int:
     while nxt < n:
         minn = min(uglies[u2]*2, uglies[u3]*3, uglies[u5]*5)
         uglies[nxt] = minn
-        
+
         while uglies[u2]*2 <= uglies[nxt]:
             u2 += 1
         while uglies[u3]*3 <= uglies[nxt]:
@@ -39,6 +39,7 @@ def get_ugly(n: int) -> int:
         while uglies[u5]*5 <= uglies[nxt]:
             u5 += 1
 
+        print(u2, u3, u5)
         nxt += 1
     return uglies[-1]
 
@@ -67,7 +68,7 @@ def is_ugly(num: int) -> bool:
 if __name__ == '__main__':
     num = 859963392
     res = is_ugly(num)
-    res = get_ugly(1500)
+    res = get_ugly(50)
     print(res)
 
 
@@ -82,4 +83,4 @@ if __name__ == '__main__':
 
 
 
-    
+

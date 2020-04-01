@@ -88,6 +88,7 @@ if __name__ == '__main__':
     paths = ['/2/2/7', '/2/3/5', '/a/b/c']
     tree = MultiTree()
     mt = tree.build(paths)
+
     print("DFS: ", tree.dfs(mt))
     print()
     print("BFS: ", tree.bfs(mt))

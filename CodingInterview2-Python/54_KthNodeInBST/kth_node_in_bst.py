@@ -43,10 +43,26 @@ def kth_node(bst: BSTNode, k: int) -> int:
 
 def travel_inorder(bst: BSTNode, res):
     if bst:
-        travel_inorder(bst.left, res)
-        res.append(bst.val)
         travel_inorder(bst.right, res)
+        res.append(bst.val)
+        travel_inorder(bst.left, res)
 
+
+def kth_node2(bst: BSTNode, k: int) -> int:
+    # 参考 https://www.geeksforgeeks.org/find-n-th-node-inorder-traversal/
+    if not bst or not k:
+        return -1
+    res = []
+    count = [0]
+    def travel_inorder2(bst: BSTNode, k: int):
+        if bst and count[0] < k:
+            travel_inorder2(bst.right, k)
+            count[0] += 1
+            if count[0] == k: 
+                res.append(bst.val)
+            travel_inorder2(bst.left, k)
+    travel_inorder2(bst, k)
+    return -1 if not res else res[0]
 
 
 if __name__ == '__main__':
@@ -61,13 +77,21 @@ if __name__ == '__main__':
     # travel_inorder(tree, res)
     # print(res)
 
-    res = kth_node(tree, 3)
+    # res = kth_node(tree, 3)
+    # print(res)
+
+
+    # travel_inorder2(tree, 3, 0)
+    # res = []
+    # travel_inorder2(tree, 3, res)
+    # print(res)
+
+
+    res = kth_node2(tree, 1)
     print(res)
 
-
-
-
-
+    res = kth_node2(tree, 2)
+    print(res)
 
 
 
