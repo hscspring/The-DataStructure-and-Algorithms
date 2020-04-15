@@ -30,7 +30,7 @@ def test_not_full_but_balance_binary_tree():
     assert tree_is_balanced3(tree) == True
 
 
-def test_not_balanced_binary_tree():
+def test_not_balanced_binary_tree1():
     #            1
     #         /      \
     #        2        3
@@ -42,6 +42,25 @@ def test_not_balanced_binary_tree():
     connect_bst_nodes(tree, BSTNode(2), BSTNode(3))
     connect_bst_nodes(tree.left, BSTNode(4), BSTNode(5))
     connect_bst_nodes(tree.left.right, BSTNode(6), None)
+    assert tree_is_balanced(tree) == False
+    assert tree_is_balanced2(tree) == False
+    assert tree_is_balanced3(tree) == False
+
+
+def test_not_balanced_binary_tree2():
+    #            1
+    #         /      \
+    #        2        2
+    #       /          \
+    #      3            3
+    #     /              \
+    #    4                4
+    tree = BSTNode(1)
+    connect_bst_nodes(tree, BSTNode(2), BSTNode(2))
+    connect_bst_nodes(tree.left, BSTNode(3), None)
+    connect_bst_nodes(tree.right, None, BSTNode(3))
+    connect_bst_nodes(tree.left.left, BSTNode(4), None)
+    connect_bst_nodes(tree.right.right, None, BSTNode(4))
     assert tree_is_balanced(tree) == False
     assert tree_is_balanced2(tree) == False
     assert tree_is_balanced3(tree) == False
@@ -91,3 +110,4 @@ def test_none():
     assert tree_is_balanced(tree) == True
     assert tree_is_balanced2(tree) == True
     assert tree_is_balanced3(tree) == True
+    

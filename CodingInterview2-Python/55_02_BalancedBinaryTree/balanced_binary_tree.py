@@ -97,6 +97,7 @@ def get_height(bst: BSTNode):
 
 
 
+
 if __name__ == '__main__':
     tree = BSTNode(10)
     connect_bst_nodes(tree, BSTNode(6), BSTNode(14))
@@ -108,16 +109,30 @@ if __name__ == '__main__':
     connect_bst_nodes(tree.right, None, BSTNode(3))
     connect_bst_nodes(tree.right.right, None, BSTNode(4))
     connect_bst_nodes(tree.right.right.right, None, BSTNode(5))
+
+
+    tree = BSTNode(1)
+    connect_bst_nodes(tree, BSTNode(2), BSTNode(2))
+    connect_bst_nodes(tree.left, BSTNode(3), None)
+    connect_bst_nodes(tree.right, None, BSTNode(3))
+    connect_bst_nodes(tree.left.left, BSTNode(4), None)
+    connect_bst_nodes(tree.right.right, None, BSTNode(4))
+
+
+
     
     # res = tree_is_balanced(tree)
     # print(res)
 
     # res = True
-    res = tree_is_balanced3(tree)
-    print(res)
+    # res = tree_is_balanced3(tree)
+    # print(res)
+
+    height = dfs_height(tree)
+    print(height)
 
 
-
+    print(tree_is_balanced4(tree))
 
 
 
