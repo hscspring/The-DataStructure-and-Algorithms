@@ -32,6 +32,21 @@ def build_production_array(arr: list) -> list:
     return out
 
 
+def product_array(lst: list) -> list:
+    length = len(lst)
+    arr1 = [1] * length
+    # 下三角 [1, 2, 6]
+    for i in range(1, length):
+        arr1[i] =  lst[i-1] * arr1[i-1]
+    arr2 = [1] * length
+    for i in range(length-2, -1, -1):
+        arr2[i] = lst[i+1] * arr2[i+1]
+    
+    for i in range(length):
+        arr1[i] = arr1[i] * arr2[i]
+    return arr1
+
+
 if __name__ == '__main__':
     lst = [1, 2, 3, 4, 5]
     res = build_production_array(lst)

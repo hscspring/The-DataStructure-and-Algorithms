@@ -15,7 +15,7 @@ class QueueMax:
         self.maxes = []
 
     def push_back(self, x):
-        while self.maxes and x >= self.maxes[-1]:
+        while self.maxes and x > self.maxes[-1]:
             self.maxes.pop()
         self.data.append(x)
         self.maxes.append(x)

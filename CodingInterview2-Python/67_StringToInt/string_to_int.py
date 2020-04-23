@@ -98,6 +98,51 @@ def toint(s: str, minus: bool) -> int:
     return res
 
 
+
+
+
+
+def get_sign_num(s: str) -> int:
+    signs = set(("+", "-"))
+    length = len(s)
+    i, k = 0, 0
+    while i < length and s[i] in signs:
+        if s[i] == "-":
+            k += 1
+        i += 1
+    return i, k
+def str2int2(s: str) -> int:
+    digits = set(map(str, range(10)))
+    sign_num, minus_num = get_sign_num(s)
+    s = s[sign_num:]
+    if not s:
+        print("invalid => with only + or -")
+        return 0
+    if s[0] == "0":
+        for i in s[1:]:
+            if i != "0":
+                print("invalid => 0xx")
+                return 0
+    for i in s:
+        if i not in digits:
+            print("invalid => must be 0~9 or + -")
+            return 0
+    minus = True if minus_num % 2 == 1 else False
+    return toint2(s, minus)
+def toint2(s: str, minus: bool) -> int:
+    length = len(s)
+    num = 0
+    for i in s:
+        num += int(i) * 10 ** (length - 1)
+        length -= 1
+    if minus:
+        num = -num
+    if num > 0x7FFFFFFF or num < -0x80000000:
+        return 0
+    return num
+
+
+
 if __name__ == '__main__':
     # s = ""
     # res = str2int(s)

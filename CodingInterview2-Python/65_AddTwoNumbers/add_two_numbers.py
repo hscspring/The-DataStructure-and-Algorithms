@@ -33,6 +33,15 @@ def add(a: int, b: int) -> int:
     return sums
     
 
+def add2(a, b):
+    sums = a ^ b
+    while b:
+        sums = a ^ b
+        carry = (a & b) << 1
+        a = sums
+        b = carry
+    return sums
+
 
 if __name__ == '__main__':
     res = add(-1, 2)
