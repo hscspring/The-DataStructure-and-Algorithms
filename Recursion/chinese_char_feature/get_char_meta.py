@@ -69,7 +69,7 @@ def get_comp_dict(char_dict: dict, comp_rawdict: dict):
             get_comp(comp_rawdict, val, lst)
             com = "".join(lst)
             tmp.append(com)
-        res[unic] = ";".join(tmp)
+        res[unic] = ",".join(tmp)
     return res
 
 
