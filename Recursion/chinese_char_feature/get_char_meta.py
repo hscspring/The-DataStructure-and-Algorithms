@@ -3,8 +3,8 @@ import locale
 import pnlp
 
 pcomp = re.compile(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]')
-NEED_PRON = ["kHanyuPinyin", "kCantonese",
-             "kKorean", "kJapaneseOn", "kVietnamese"]
+NEED_PRON = ["kMandarin", "kCantonese",
+             "kKorean", "kJapaneseKun", "kVietnamese"]
 
 ########## Pronunciation ##########
 
@@ -28,10 +28,15 @@ def get_pron_dict(pron_rawdict: dict):
         prons = []
         for need in NEED_PRON:
             pron = pron_rawdict[unic].get(need, "null")
-            pron = ",".join(pron.split())
-            if need == "kHanyuPinyin":
-                pron = pron.split(":")[-1]
-            prons.append(pron)
+            pron_list = pron.split(" ")
+            tmp = []
+            for sub_pron in pron_list:
+                # 以下三种都是类似这样的形式：10019.020:tiàn 
+                if need in ["kHanyuPinyin", "kTGHZ2013", "kXHC1983"]:
+                    sub_pron = sub_pron.split(":")[-1]
+                tmp.append(sub_pron)
+            clean_pron = ",".join(tmp)
+            prons.append(clean_pron)
         res[unic] = ";".join(prons)
     return res
 

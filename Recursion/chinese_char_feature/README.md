@@ -8,6 +8,8 @@
 
 **关于笔画 IDS 说明如下**：
 
+字典文件为：`idx.txt`，共 88937 个字。
+
 - 可能包括多种构成方式，用 `,`（英文逗号）隔开。
 
 - 当包含多种构成方式时，有一种情况没有考虑，也就是当递归向下构造时，没考虑路径上可能的多种情况，只选了第一种。举例说明：
@@ -31,4 +33,25 @@
 
 **关于发音说明如下**：
 
-共取了五种发音系统：kHanyuPinyin, kCantonese, kKorean, kJapaneseOn, kVietnamese，根据前面说明参考的例子反推出来的。
+发音字典文件为：`Unihan_readings.txt`，共 47429 个字。
+
+根据说明文档的例子和说明，共取五种发音系统：`MC;CC;K;JO;V`，即：Mandarin Chinese, Cantonese Chinese, Korean,  Japanese and Vietnamese，分别表示：普通话、广东话、朝鲜语、日语和越南语。
+
+字典中以下字段含义（来自：http://www.unicode.org/reports/tr38/）：
+
+- kMandarin：中文普通话，41378 个
+
+- kCantonese：中文广东话，23112 个
+- kKorean：朝鲜语，9051 个
+- kJapaneseKun：日语发音，11293 个
+- kVietnamese：越南语发音，8301 个
+- kHangul：韩语，8414 个
+- kHanyuPinlu：汉语频率，3800 个
+- kHanyuPinyin：汉语拼音，34131 个
+- kTGHZ2013：《通用规范汉字字典》，8106 个
+- kXHC1983：《现代汉语词典》，11018 个
+- kTang：中文唐代发音，3812 个
+- kJapaneseOn：中日语发音，13176 个
+- kDefinition：定义，21076 个
+
+我这里就采用了对应的前 5 个表示，中文发音没有包括后面的汉语拼音和两个字典。理由是：第一，其个数接近字数，基本每个字都有发音；第二，用其中一种足以计算相似度。其实对于使用其他语种的发音来计算相似度个人是持保留态度的。
