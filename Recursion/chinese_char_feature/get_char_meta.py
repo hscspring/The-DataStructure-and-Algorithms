@@ -4,7 +4,7 @@ import pnlp
 
 pcomp = re.compile(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]')
 NEED_PRON = ["kMandarin", "kCantonese",
-             "kKorean", "kJapaneseKun", "kVietnamese"]
+             "kKorean", "kJapaneseOn", "kVietnamese"]
 
 ########## Pronunciation ##########
 
