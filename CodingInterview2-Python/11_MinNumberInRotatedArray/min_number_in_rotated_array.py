@@ -34,6 +34,23 @@ def min_in_order(lst: list) -> int:
             res = i
     return res
 
+def findMin(nums: list) -> int:
+    if not nums:
+        return None
+    if len(nums) == 1:
+        return nums[0]
+    lt, rt = 0, len(nums) - 1
+    while lt <= rt:
+        mid = (lt + rt) // 2
+        if nums[mid] > nums[mid+1]:
+            return nums[mid+1]
+        else:
+            if nums[mid] > nums[-1]:
+                lt = mid + 1
+            else:
+                rt = mid - 1
+    return nums[0]
+
 
 if __name__ == '__main__':
     lst = [ 3, 4, 5, 1, 1, 2 ]
