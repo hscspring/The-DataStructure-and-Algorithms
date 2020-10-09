@@ -64,8 +64,8 @@ class MultiTree:
         queue.append(root)
         while len(queue): 
             curr = queue.pop(0)
-            if curr.name not in res:
-                res.append(curr.name)
+            # if curr.name not in res:
+            res.append(curr.name)
             for child in curr.children:
                 queue.append(child)
         return res
@@ -85,7 +85,7 @@ class MultiTree:
         return res
 
 if __name__ == '__main__':
-    paths = ['/2/2/7', '/2/3/5', '/a/b/c']
+    paths = ['/2/2', '/2/2/7', '/2/3/5', '/a/b/c']
     tree = MultiTree()
     mt = tree.build(paths)
 
