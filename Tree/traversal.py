@@ -100,8 +100,25 @@ def traversal_postorder_iteration(root: TreeNode):
 
 
 def traversal_preorder_morris(root: TreeNode):
-    pass
-
+    res = []
+    curr = root
+    prev = None
+    while curr:
+        if not curr.left:
+            res.append(curr.val)
+            curr = curr.right
+        else:
+            prev = curr.left
+            while prev.right and prev.right is not curr:
+                prev = prev.right
+            if prev.right is curr:
+                prev.right = None
+                curr = curr.right
+            else:
+                res.append(curr.val)
+                prev.right = curr
+                curr = curr.left
+    return res
 
 
 def traversal_inorder_morris(root: TreeNode):
@@ -114,19 +131,32 @@ def traversal_inorder_morris(root: TreeNode):
             curr = curr.right
         else:
             prev = curr.left
-            while prev.right:
+            while prev.right and prev.right is not curr:
                 prev = prev.right
-            tmp = curr
-            prev.right = curr
-            curr = curr.left
-            tmp.left = None
+            if prev.right is None:
+                prev.right = curr
+                curr = curr.left
+            else:
+                res.append(curr.val)
+                prev.right = None
+                curr = curr.right
     return res
 
 
-
 def traversal_postorder_morris(root: TreeNode):
-    pass
-
+    res = []
+    tmp = root
+    visited = set()
+    while tmp and tmp not in visited:
+        if tmp.left and tmp.left not in visited:
+            tmp = tmp.left
+        elif tmp.right and tmp.right not in visited:
+            tmp = tmp.right
+        else:
+            res.append(tmp.val)
+            visited.add(tmp)
+            tmp = root
+    return res
 
 
 def traversal_hierarchically(root: TreeNode):
@@ -141,6 +171,24 @@ def traversal_hierarchically(root: TreeNode):
             stack.append(node.left)
         if node.right:
             stack.append(node.right)
+    return res
+
+
+def print_binary_tree3(tree: TreeNode) -> list:
+    if not tree:
+        return []
+    queue, res = [tree], []
+    while queue:
+        tmp = []
+        for i in range(len(queue)):
+            node = queue.pop(0)
+            tmp.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        if tmp:
+            res.append(tmp)
     return res
 
 
@@ -185,6 +233,8 @@ if __name__ == '__main__':
     print(preorder)
     iterative_preorder = traversal_preorder_iteration(root)
     print(iterative_preorder)
+    morris_preorder = traversal_preorder_morris(root)
+    print(morris_preorder)
 
     print("In Order: ")
     root = copy.deepcopy(tree)
@@ -201,8 +251,12 @@ if __name__ == '__main__':
     print(postorder)
     iterative_postorder = traversal_postorder_iteration(root)
     print(iterative_postorder)
+    morris_postorder = traversal_postorder_morris(root)
+    print(morris_postorder)
 
     print("Hierarchical Order: ")
     root = copy.deepcopy(tree)
     hierarchicalorder = traversal_hierarchically(root)
     print(hierarchicalorder)
+
+    print(print_binary_tree3(root))

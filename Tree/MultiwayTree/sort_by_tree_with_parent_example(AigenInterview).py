@@ -1,3 +1,5 @@
+from pprint import pprint
+
 def read_file(fp):
     with open(fp, "r") as f:
         data = f.read().split("\n")
@@ -44,7 +46,10 @@ path = "data.txt"
 dl = read_file(path)
 pdl = pad_data(dl)
 cdl = construct(pdl)
+pprint(cdl)
+print()
 tree = build_tree(cdl)["."][0]
-res = dft(tree, "金字塔")
+pprint(tree)
+res = dft(tree, "种姓制度")
 print(res)
 
