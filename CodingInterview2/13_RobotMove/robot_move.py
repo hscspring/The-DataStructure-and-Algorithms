@@ -80,5 +80,5 @@ def get_digit_num(num: int) -> int:
 
 
 if __name__ == '__main__':
-    res = moving_count(1, 10, 9)
+    res = moving_count(1, 2, 1)
     print(res)
