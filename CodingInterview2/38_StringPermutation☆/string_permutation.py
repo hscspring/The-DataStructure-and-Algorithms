@@ -180,6 +180,7 @@ def eight_queens():
     n = 0
     all_permutations = permutate_core7("", s, [])
     for perm in all_permutations:
+        print("perm", perm)
         if help_func(perm):
             n += 1
     return n
@@ -217,12 +218,12 @@ if __name__ == '__main__':
     # res = permutate2(s)
     # print(res)
 
-    res = permutate6(s)
-    print(res)
-    print(["".join(item) for item in res])
+    # res = permutate6(s)
+    # print(res)
+    # print(["".join(item) for item in res])
 
-    lst = [2, 5, 1, 6, 0, 3, 7, 4]
-    print(help_func(lst))
-    print(eight_queens())
+    # lst = [2, 5, 1, 6, 0, 3, 7, 4]
+    # print(help_func(lst))
+    # print(eight_queens())
 
     queen([None]*8)

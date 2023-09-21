@@ -107,7 +107,7 @@ def min_edit_cost(s1, s2, ic, dc, rc):
         dp[0][i] = i * ic
     for i in range(1, l1 + 1):
         for j in range(1, l2 + 1):
-            if s1[i - 1] == s2[i - 1]:
+            if s1[i - 1] == s2[j - 1]:
                 dp[i][j] = dp[i - 1][j - 1]
             else:
                 dp[i][j] = min(

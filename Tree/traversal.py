@@ -260,3 +260,23 @@ if __name__ == '__main__':
     print(hierarchicalorder)
 
     print(print_binary_tree3(root))
+
+    tree = TreeNode(6)
+    connect_nodes(tree, TreeNode(4), TreeNode(9))
+    connect_nodes(tree.left, None, TreeNode(18))
+    connect_nodes(tree.right, None, TreeNode(26))
+    connect_nodes(tree.left.right, None, TreeNode(32))
+    connect_nodes(tree.right.right, TreeNode(12), None)
+    connect_nodes(tree.right.right.left, TreeNode(10), TreeNode(30))
+    connect_nodes(tree.right.right.left.right, TreeNode(8), TreeNode(45))
+    root = copy.deepcopy(tree)
+    preorder = traversal_preorder(root)
+    print(preorder)
+
+    
+
+
+
+
+
+

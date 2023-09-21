@@ -78,8 +78,7 @@ def inverse_core2(data: list, start: int, end: int) -> int:
         else:
             tmp.append(data[j])
             j -= 1
-    data[start: end+1] = data[start+mid+1:j+1] + \
-        data[start:i+1] + list(reversed(tmp))
+    data[start: end+1] = data[start+mid+1:j+1] + data[start:i+1] + list(reversed(tmp))
     return left + right + count
 
 
