@@ -1,19 +1,3 @@
-def permutation(s):
-    """
-    # 字符串排列
-    输入一个长度为 n 字符串，打印出该字符串中字符的所有排列，你可以以任意顺序返回这个字符串数组。
-    例如输入字符串 ABC, 则输出由字符 A,B,C 所能排列出来的所有字符串 ABC,ACB,BAC,BCA,CBA 和 CAB。
-    """
-    res = []
-    def func(pre, suf):
-        if not suf:
-            res.append(pre)
-        for i in range(len(suf)):
-            func(pre+suf[i], suf[:i]+suf[i+1:])
-    func("", s)
-    return res
-
-
 def max_profit(ps):
     """
     # 买卖股票的最好时机
@@ -26,28 +10,10 @@ def max_profit(ps):
             mi = v
         if v > ma:
             ma = v
-        p = v - mi 
+        p = v - mi
         if p > res:
             res = p
     return res
-
-
-def greatest_sum_of_subarrays(arr):
-    """
-    # 连续子数组最大和
-    输入一个长度为 n 的整型数组 a，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
-    """
-    if not arr:
-        return 0
-    lm, gm = 0, arr[0]
-    for v in arr:
-        if lm < 0:
-            lm = v
-        else:
-            lm += v
-        if lm > gm:
-            gm = lm
-    return gm
 
 
 def unique_path(m, n):
@@ -116,45 +82,6 @@ def min_edit_cost(s1, s2, ic, dc, rc):
     return dp[-1][-1]
 
 
-def longest_common_substring(s1, s2):
-    """
-    # 最长公共子串
-    给定两个字符串 str1 和 str2, 输出两个字符串的最长公共子串
-    题目保证 str1 和 str2 的最长公共子串存在且唯一。
-    """
-    l1, l2 = len(s1), len(s2)
-    dp = [[0] * (l2 + 1) for i in range(l1 + 1)]
-    res = ""
-    for i in range(1, l1 + 1):
-        for j in range(1, l2 + 1):
-            if s1[i - 1] == s2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            if dp[i][j] > len(res):
-                res = s1[i - dp[i][j] : i]
-    return res
-
-
-def longest_common_sequence(s1, s2):
-    """
-    # 最长公共子序列
-    给定两个字符串 str1 和 str2，输出两个字符串的最长公共子序列。
-    目前给出的数据，仅仅会存在一个最长的公共子序列
-    """
-    l1, l2 = len(s1), len(s2)
-    dp = [[""] * (s2 + 1) for i in range(l1 + 1)]
-    for i in range(1, l1 + 1):
-        for j in range(2, l2 + 1):
-            if s1[i - 1] == s2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + s1[i]
-            else:
-                dp[i][j] = (
-                    dp[i - 1][j]
-                    if len(dp[i - 1][j]) > len(dp[i][j - 1])
-                    else dp[i][j - 1]
-                )
-    return dp[-1][-1]
-
-
 def longest_palindrome_substring(s):
     """
     # 最长回文子串（解法一）
@@ -162,14 +89,14 @@ def longest_palindrome_substring(s):
     给定字符串 A 以及它的长度 n ，请返回最长回文子串的长度。
     """
     def func(s, l, r):
-        while l>=0 and r<len(s) and s[l] == s[r]:
+        while l >= 0 and r < len(s) and s[l] == s[r]:
             l -= 1
             r += 1
         return r - l - 1
 
     res = 0
     for i in range(len(s)):
-        res = max(res, func(s, i, i), func(s, i, i+1))
+        res = max(res, func(s, i, i), func(s, i, i + 1))
     return res
 
 
@@ -182,11 +109,9 @@ def longest_palindrome_substring(s):
     res = 0
     n = len(s)
     dp = [[0] * n for i in range(n)]
-    for i in range(n-1, -1, -1):
+    for i in range(n - 1, -1, -1):
         for j in range(i, n):
-            dp[i][j] = s[i] == s[j] and (j - i < 3 or dp[i+1][j-1])
+            dp[i][j] = s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1])
             if dp[i][j] and j - i + 1 > res:
                 res = j - i + 1
     return res
-
-

@@ -1,14 +1,4 @@
-class TreeNode:
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
-
-
-def connect_nodes(head: TreeNode, left: TreeNode, right: TreeNode) -> TreeNode:
-    if head:
-        head.left = left
-        head.right = right
+from tree import TreeNode, connect_nodes, print_binary_tree3
 
 
 def traversal_preorder(root: TreeNode):
@@ -53,6 +43,9 @@ def traversal_postorder(root: TreeNode):
     return res
 
 
+############# Iteration ###############
+
+
 def traversal_preorder_iteration(root: TreeNode):
     """https://leetcode.com/problems/binary-tree-preorder-traversal/discuss/838862/Two-different-iteration-solutions-in-C%2B%2B-and-Python3"""
     res = []
@@ -68,6 +61,18 @@ def traversal_preorder_iteration(root: TreeNode):
             stack.append(node.left)
     return res
 
+def traversal_preorder_iteration2(root: TreeNode):
+    res = []
+    stack = []
+    curr = root
+    while stack or curr:
+        while curr:
+            res.append(curr.val)
+            stack.append(curr)
+            curr = curr.left
+        curr = stack.pop()
+        curr = curr.right
+    return res
 
 def traversal_inorder_iteration(root: TreeNode):
     res = []
@@ -82,21 +87,95 @@ def traversal_inorder_iteration(root: TreeNode):
         curr = curr.right
     return res
 
-
 def traversal_postorder_iteration(root: TreeNode):
+    res =[]
+    stack = []
+    curr = root
+    prev = None
+    while stack or curr:
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+        curr = stack[-1]
+        if curr.right and curr.right != prev:
+            curr = curr.right
+        else:
+            stack.pop()
+            res.append(curr.val)
+            prev = curr
+            curr = None
+    return res
+
+def traversal_postorder_iteration2(root: TreeNode):
     """From https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/830858/Python-recursive-generator-and-iterative-using-deque."""
     res = []
     stack = []
     curr = root
     while stack or curr:
-        if curr:
+        while curr:
+            res.append(curr.val)
             stack.append(curr)
-            res.insert(0, curr.val)
             curr = curr.right
-            continue
         curr = stack.pop()
         curr = curr.left
+    return list(reversed(res))
+
+############### BFS/DFS/HFS ############
+
+
+def traversal_hierarchically(root: TreeNode):
+    res = []
+    stack = [root]
+    while stack:
+        tmp = []
+        for i in range(len(stack)):
+            node = stack.pop(0)
+            tmp.append(node.val)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        res.append(tmp)
     return res
+
+
+def traversal_dfs(root: TreeNode):
+    res = []
+    stack = [root]
+    while stack:
+        curr = stack.pop()
+        res.append(curr.val)
+        if curr.right:
+            stack.append(curr.right)
+        if curr.left:
+            stack.append(curr.left)
+    return res
+
+def traversal_dfs_r(root):
+    res = []
+    def func(curr):
+        res.append(curr.val)
+        if curr.left:
+            func(curr.left)
+        if curr.right:
+            func(curr.right)
+    func(root)
+    return res
+
+def traversal_bfs(root: TreeNode):
+    res = []
+    queue = [root]
+    while queue:
+        curr = queue.pop(0)
+        res.append(curr.val)
+        if curr.left:
+            queue.append(curr.left)
+        if curr.right:
+            queue.append(curr.right)
+    return res
+
+
+############ Morris ###############
 
 
 def traversal_preorder_morris(root: TreeNode):
@@ -159,62 +238,6 @@ def traversal_postorder_morris(root: TreeNode):
     return res
 
 
-def traversal_hierarchically(root: TreeNode):
-    if not root:
-        return []
-    res = []
-    stack = [root]
-    while stack:
-        node = stack.pop(0)
-        res.append(node.val)
-        if node.left:
-            stack.append(node.left)
-        if node.right:
-            stack.append(node.right)
-    return res
-
-
-def print_binary_tree3(tree: TreeNode) -> list:
-    if not tree:
-        return []
-    queue, res = [tree], []
-    while queue:
-        tmp = []
-        for i in range(len(queue)):
-            node = queue.pop(0)
-            tmp.append(node.val)
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        if tmp:
-            res.append(tmp)
-    return res
-
-
-def print_node(node: TreeNode):
-    if node:
-        print("node value: ", node.val)
-        if node.left:
-            print("left child value: ", node.left.val)
-        else:
-            print("left child null")
-        if node.right:
-            print("right child value: ", node.right.val)
-        else:
-            print("right child null")
-    else:
-        print("node is null")
-
-
-def print_tree(root: TreeNode):
-    print_node(root)
-    if root:
-        if root.left:
-            print_tree(root.left)
-        if root.right:
-            print_tree(root.right)
-
 
 if __name__ == '__main__':
     import copy
@@ -272,11 +295,3 @@ if __name__ == '__main__':
     root = copy.deepcopy(tree)
     preorder = traversal_preorder(root)
     print(preorder)
-
-    
-
-
-
-
-
-
