@@ -16,24 +16,6 @@ def max_profit(ps):
     return res
 
 
-def unique_path(m, n):
-    """
-    # 求路径
-    一个机器人在 m×n 大小的地图的左上角（起点）。
-    机器人每次可以向下或向右移动。机器人要到达地图的右下角（终点）。
-    可以有多少种不同的路径从起点走到终点？
-    """
-    dp = [[0] * (n) for i in range(m)]
-    for i in range(m):
-        dp[i][0] = 1
-    for i in range(n):
-        dp[0][i] = 1
-    for i in range(m):
-        for j in range(n):
-            dp[i][j] = dp[i - 1][j] + dp[i][j + 1]
-    return dp[-1][-1]
-
-
 def min_path_sum(arr):
     """
     # 矩阵最小路径和
@@ -88,11 +70,11 @@ def longest_palindrome_substring(s):
     对于一个字符串（仅包含小写英文字母），请设计一个高效算法，计算其中最长回文子串的长度。
     给定字符串 A 以及它的长度 n ，请返回最长回文子串的长度。
     """
-    def func(s, l, r):
-        while l >= 0 and r < len(s) and s[l] == s[r]:
-            l -= 1
-            r += 1
-        return r - l - 1
+    def func(s, le, ri):
+        while le >= 0 and ri < len(s) and s[le] == s[ri]:
+            le -= 1
+            ri += 1
+        return ri - le - 1
 
     res = 0
     for i in range(len(s)):
@@ -100,7 +82,7 @@ def longest_palindrome_substring(s):
     return res
 
 
-def longest_palindrome_substring(s):
+def longest_palindrome_substring2(s):
     """
     # 最长回文子串（解法二）
     对于一个字符串（仅包含小写英文字母），请设计一个高效算法，计算其中最长回文子串的长度。

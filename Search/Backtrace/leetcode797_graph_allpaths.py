@@ -41,7 +41,9 @@ def run2(graph):
         if node == end:
             res.append(path.copy())
         for v in graph[node]:
-            func(v, end)
+            # 不走回头路
+            if v not in path:
+                func(v, end)
         path.pop()
 
     func(0, len(graph) - 1)
