@@ -30,12 +30,12 @@ def permutation(s):
     # https://www.youtube.com/watch?v=IPWmrjE1_MU
     res = []
 
-    def func(pre, suf):
+    def func(suf, pre):
         if not suf:
             res.append(pre)
         for i in range(len(suf)):
             func(pre + suf[i], suf[:i] + suf[i + 1:])
-    func("", s)
+    func(s, "")
     return res
 
 

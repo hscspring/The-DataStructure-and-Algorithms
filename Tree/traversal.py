@@ -125,16 +125,16 @@ def traversal_postorder_iteration2(root: TreeNode):
 
 def traversal_hierarchically(root: TreeNode):
     res = []
-    stack = [root]
-    while stack:
+    queue = [root]
+    while queue:
         tmp = []
-        for i in range(len(stack)):
-            node = stack.pop(0)
+        for i in range(len(queue)):
+            node = queue.pop(0)
             tmp.append(node.val)
             if node.left:
-                stack.append(node.left)
+                queue.append(node.left)
             if node.right:
-                stack.append(node.right)
+                queue.append(node.right)
         res.append(tmp)
     return res
 

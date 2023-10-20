@@ -5,6 +5,20 @@ class TreeNode:
         self.right = right
 
 
+# 二叉搜索树
+def find_path_bst(root, target):
+    path = []
+    node = root
+    while node and node.val != target:
+        path.append(node.val)
+        if taget < node.val:
+            node = node.left
+        else:
+            node = node.right
+    path.append(node.val)
+    return path
+
+
 # 二叉树给定节点路径
 def find_path(root, target):
     if root is None:
